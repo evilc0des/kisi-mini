@@ -27,11 +27,14 @@ const styles = {
       marginLeft: -12,
       marginRight: 20,
     },
+    nav: {
+        color: "white"
+    }
 };
 
 class App extends React.Component {
   render() {
-    const activeStyle = { color: 'green' };
+    const activeStyle = { borderBottom: "2px solid white" };
     const { classes } = this.props;
     return (
         <div>
@@ -41,11 +44,11 @@ class App extends React.Component {
                     <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="title" color="inherit" className={classes.flex}>
+                    <Typography variant="title" color="inherit" className={classes.flex}>   
                         Kisi Mini
                     </Typography>
-                    <NavLink exact to="/" activeStyle={activeStyle}><Button color="inherit">Home</Button></NavLink>
-                    <NavLink to="/about" activeStyle={activeStyle}><Button color="inherit">Home</Button></NavLink>
+                    <NavLink exact to="/" activeStyle={activeStyle}><Button className={classes.nav}>Home</Button></NavLink>
+                    <NavLink to="/about" activeStyle={activeStyle}><Button className={classes.nav}>About</Button></NavLink>
                     </Toolbar>
                 </AppBar>
             </div>
