@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { LOCKED, UNLOCK_FAILURE, UNLOCK_SUCCESS } from '../constants/states';
+import { LOCKED, UNLOCK_FAILURE, UNLOCK_SUCCESS, UNLOCKING } from '../constants/states';
 
 const styles = {
     card: {
@@ -72,7 +72,14 @@ class HomePage extends React.Component {
                                     </CardContent>
                                     <CardActions>
                                         <Button variant="contained" className={classes.button} color="primary" onClick={() => onUnlock(key)}>
-                                        { (lock.unlockState == LOCKED || lock.unlockState == UNLOCK_FAILURE) ? <span><i className='material-icons unlock-btn-icon'>lock</i> Unlock</span> : <span><i className='material-icons unlock-btn-icon'>lock_open</i> Unlocked</span>}</Button>
+                                        { 
+                                            (lock.unlockState == LOCKED || lock.unlockState == UNLOCK_FAILURE) ? 
+                                                <span><i className='material-icons unlock-btn-icon'>lock</i> Unlock</span> : 
+                                                (lock.unlockState == UNLOCKING) ?
+                                                    <span><i className='material-icons unlock-btn-icon'>vpn_key</i> UNLOCKING</span>:
+                                                    null
+                                        }
+                                        </Button>
                                         {
                                             (lock.unlockState == UNLOCK_SUCCESS || lock.unlockState == UNLOCK_FAILURE)?
                                                 <Typography>
