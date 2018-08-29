@@ -13,17 +13,19 @@ function attemptUnlock(lockId) {
     }
 }
 
-function setUnlockSuccess(result) {
+function setUnlockSuccess(result, lockId) {
     return {
         type: 'UNLOCK_SUCCESS',
+        lockId: lockId,
         results : { ...result },
         receivedAt: Date.now()
     }
 }
 
-function setUnlockFailed(error) {
+function setUnlockFailed(error, lockId) {
     return {
         type: 'UNLOCK_FAILED',
+        lockId: lockId,
         results: { ...error },
         receivedAt: Date.now()
     }
@@ -35,10 +37,10 @@ export function unlockById(lockId) {
             dispatch(attemptUnlock(lockId));
         }
         return kisiClient.post(`/locks/${lockId}/unlock`, {})
-        .then(result => dispatch(setUnlockSuccess(result)))
+        .then(result => dispatch(setUnlockSuccess(result, lockId)))
         .catch(error => {
             //console.log(error); 
-            return dispatch(setUnlockFailed(error))
+            return dispatch(setUnlockFailed(error, lockId))
         })
     }
 }
