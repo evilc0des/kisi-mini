@@ -87,7 +87,7 @@ class HomePage extends React.Component {
                                                     (lock.unlockState == UNLOCK_SUCCESS) ? "Unlock Successful" : "Unlock Failed"
                                                 }
                                                 </Typography> :
-                                                (lock.unlockState == UNLOCK_SUCCESS)? <CircularProgress className={classes.progress} /> : null
+                                                (lock.unlockState == UNLOCKING)? <CircularProgress className={classes.progress} /> : null
                                         }
                                     </CardActions>
                                 </Card>
