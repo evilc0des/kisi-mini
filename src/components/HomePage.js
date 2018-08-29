@@ -67,7 +67,7 @@ class HomePage extends React.Component {
                                         {lock.name}
                                         </Typography>
                                         <Typography className={classes.pos} color="textSecondary">
-                                        @ {lock.place.name}
+                                        { lock.place ? <span>@ {lock.place.name}</span> : null }
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
